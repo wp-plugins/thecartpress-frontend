@@ -1,22 +1,22 @@
-=== TheCartPress Frontend, allows access to some admin panels from the frontend of TheCartPress, the eCommerce plugin for WP ===
+=== Frontend for TheCartPress eCommerce ===
 Contributors: thecartpress
 Tags: frontend, CartPress, ecommerce, e-commerce, store, shop, shopping, shopping cart, cart, custom post type, taxonomy, taxonomies, ecomerce, products, TheCartPress, html5, Australia
 Requires at least: 3.1
 Tested up to: 3.2
 Stable Tag: 1.0.0
 
-Allows access to admin panels from the frontend of TheCartPress
+Allows access to customer's account from the front-end of TheCartPress eCommerce sites
 
 == Description ==
 
-Allows access to admin panels from the frontend of TheCartPress, eCommerce plugin for WordPress
+Allows access to customer's account from the front-end of TheCartPress eCommerce sites
 
 = More info and Community =
 
-* [TheCartPress Demo](http://demo.thecartpress.com)
+* [TheCartPress Extend](http://extend.thecartpress.com): plugins, themes and custom development
 * [TheCartPress Site](http://thecartpress.com)
 * [TheCartPress Community/Support](http://community.thecartpress.com/activity/)
-* [TheCartPress Extend](http://extend.thecartpress.com): plugins, themes and custom development
+* [TheCartPress Demo](http://demo.thecartpress.com)
 
 == Installation ==
 
