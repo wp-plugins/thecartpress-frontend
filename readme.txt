@@ -1,4 +1,4 @@
-=== Frontend for TheCartPress eCommerce ===
+=== Frontend for TheCartPress eCommerce Shopping Cart ===
 Contributors: thecartpress
 Tags: frontend, CartPress, ecommerce, e-commerce, store, shop, shopping, shopping cart, cart, custom post type, taxonomy, taxonomies, ecomerce, products, TheCartPress, html5, Australia
 Requires at least: 3.1
