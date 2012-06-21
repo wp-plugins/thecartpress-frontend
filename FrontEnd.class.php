@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: TheCartPress Front End
-Plugin URI: http://thecartpress.com
+Plugin URI: http://wordpress.org/extend/plugins/thecartpress-frontend/
 Description: Allows to set some admin panels in the front end
-Version: 1.0.1
+Version: 1.0.3
 Author: TheCartPress team
 Author URI: http://thecartpress.com
 License: GPL
@@ -70,6 +70,7 @@ class TCPFrontEnd {
 		$page = array(
 			'comment_status'	=> 'closed',
 			'post_content'		=> 'My Account',
+			'post_content'		=> '[tcp_my_account]',
 			'post_status'		=> 'publish',
 			'post_title'		=> __( 'My Account','tcp-fe' ),
 			'post_type'			=> 'page',
@@ -196,6 +197,12 @@ class TCPFrontEnd {
 		return $warnings_msg;
 	}
 
+	function tcp_my_account() {
+		if ( ! is_user_logged_in() ) {
+			tcp_login_form( array( 'echo' => true ) );
+		}
+	}
+
 	function tcp_addresses_list() {
 		require_once( ABSPATH . 'wp-content/plugins/thecartpress/admin/AddressesList.class.php' );
 		$addresses_list = new TCPAddressesList();
@@ -232,6 +239,7 @@ class TCPFrontEnd {
 			add_filter( 'tcp_check_the_plugin', array( $this, 'tcp_check_the_plugin' ) );
 			add_filter( 'tcp_checking_pages', array( $this, 'tcp_checking_pages' ), 10, 2 );
 		} else {
+			add_shortcode( 'tcp_my_account', array( $this, 'tcp_my_account' ) );
 			add_shortcode( 'tcp_addresses_list', array( $this, 'tcp_addresses_list' ) );
 			add_shortcode( 'tcp_address_edit', array( $this, 'tcp_address_edit' ) );
 			add_shortcode( 'tcp_downloadable_list', array( $this, 'tcp_downloadable_list' ) );
