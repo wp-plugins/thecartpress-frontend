@@ -3,7 +3,7 @@
 Plugin Name: TheCartPress Front End
 Plugin URI: http://wordpress.org/extend/plugins/thecartpress-frontend/
 Description: Allows to set some admin panels in the front end
-Version: 1.0.3
+Version: 1.0.4
 Author: TheCartPress team
 Author URI: http://thecartpress.com
 License: GPL
@@ -198,9 +198,7 @@ class TCPFrontEnd {
 	}
 
 	function tcp_my_account() {
-		if ( ! is_user_logged_in() ) {
-			tcp_login_form( array( 'echo' => true ) );
-		}
+		tcp_login_form( array( 'echo' => true ) );
 	}
 
 	function tcp_addresses_list() {

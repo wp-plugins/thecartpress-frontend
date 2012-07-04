@@ -26,6 +26,7 @@ class TCPOrdersList {
 		if ( $current_user->ID == 0 ) : ?>
 
 			<p><?php _e( 'You need to login to see your orders.', 'tcp-fe' ); ?></p>
+			<?php tcp_login_form( array( 'echo' => true ) ); ?>
 
 		<?php return;
 		endif;
