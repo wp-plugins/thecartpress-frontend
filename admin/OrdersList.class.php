@@ -23,6 +23,13 @@ class TCPOrdersList {
 	function show( $echo = true ) {
 		global $current_user;
 		get_currentuserinfo();
+		if ( $current_user->ID == 0 ) : ?>
+
+			<p><?php _e( 'You need to login to see your orders.', 'tcp-fe' ); ?></p>
+			<?php tcp_login_form( array( 'echo' => true ) ); ?>
+
+		<?php return;
+		endif;
 		if ( isset( $_REQUEST['order_id'] ) ) {
 			$order_id = $_REQUEST['order_id'];
 			if ( Orders::is_owner( $order_id, $current_user->ID ) ) {
