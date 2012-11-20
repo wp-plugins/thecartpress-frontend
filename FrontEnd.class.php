@@ -3,7 +3,7 @@
 Plugin Name: TheCartPress Front End
 Plugin URI: http://wordpress.org/extend/plugins/thecartpress-frontend/
 Description: Allows to set some admin panels in the front end
-Version: 1.1
+Version: 1.2
 Author: TheCartPress team
 Author URI: http://thecartpress.com
 License: GPL
@@ -38,16 +38,18 @@ class TCPFrontEnd {
 		add_shortcode( 'tcp_downloadable_list', array( $this, 'tcp_downloadable_list' ) );
 		add_shortcode( 'tcp_orders_list', array( $this, 'tcp_orders_list' ) );
 		add_filter( 'body_class', array( &$this, 'body_classes' ) );
+		add_filter( 'tcp_send_order_mail_to_customer_message', array( &$this, 'tcp_send_order_mail_to_customer_message' ), 10, 2 );
 		register_activation_hook( __FILE__, array( $this, 'activate_plugin' ) );
 	}
 
 	function init() {
 		if ( function_exists( 'load_plugin_textdomain' ) ) load_plugin_textdomain( 'tcp-fe', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		if ( ! is_admin() ) wp_enqueue_style( 'tcp_frontend_style', plugins_url( 'thecartpress-frontend/css/frontend.css' ) );
+		add_filter( 'tcp_get_download_area_url', array( &$this, 'tcp_get_download_area_url' ) );
 	}
 
 	function admin_init() {
-		if ( ! current_user_can( 'tcp_edit_product' ) && $_SERVER['PHP_SELF'] != '/wp-admin/admin-ajax.php') {
+		if ( ! current_user_can( 'tcp_edit_product' ) && substr( $_SERVER['PHP_SELF'], -strlen( '/wp-admin/admin-ajax.php' ) ) != '/wp-admin/admin-ajax.php' ) {
 			wp_redirect( site_url() );
 			exit;
 		}
@@ -228,6 +230,9 @@ class TCPFrontEnd {
 		<div class="tcp_login_form">
 		<?php tcp_login_form( array( 'see_register' => false ) ); ?>
 		</div>
+		<a href="<?php tcp_the_my_orders_url(); ?>"><?php _e( 'My Orders', 'tcp-fu' ); ?></a>
+		<br/>
+		<a href="<?php tcp_the_my_addresses_url(); ?>"><?php _e( 'My Addresses', 'tcp-fu' ); ?></a>
 		<?php if ( get_option( 'users_can_register' ) ) : ?>
 		<div class="tcp_register_form">
 		<?php tcp_register_form(); ?>
@@ -268,8 +273,24 @@ class TCPFrontEnd {
 		return $classes;
 	}
 
+	function tcp_send_order_mail_to_customer_message( $message, $order_id ) {
+		require_once( TCP_DAOS_FOLDER . 'Orders.class.php' );
+		$order = Orders::get( $order_id );
+		if ( $order && $order->customer_id > 0 && $order->status == tcp_get_completed_order_status() ) {
+			require_once( TCP_DAOS_FOLDER . 'OrdersDetails.class.php' );
+			if ( OrdersDetails::isDownloadable( $order_id ) ) {
+				$message .= sprintf( __( 'To access to your download items, please visit <a href="%s">the download area</a>.', 'tcp-fe' ), tcp_the_my_account_url( false ) );
+			}
+		}
+		return $message;
+	}
+
 	private function is_page( $page_id ) {
 		return function_exists( 'tcp_get_current_id' ) ? is_page( tcp_get_current_id( $page_id ), 'page' ) : false;
+	}
+
+	function tcp_get_download_area_url( $url ) {
+		return tcp_the_my_downloadables_url( false );
 	}
 }
 
@@ -277,6 +298,24 @@ new TCPFrontEnd();
 
 function tcp_the_my_account_url( $echo = true ) {
 	$url = get_permalink( tcp_get_current_id( get_option( 'tcp_my_account_page_id' ), 'page' ) );
+	if ( $echo ) echo $url;
+	else return $url;
+}
+
+function tcp_the_my_orders_url( $echo = true ) {
+	$url = get_permalink( tcp_get_current_id( get_option( 'tcp_orders_list_page_id' ), 'page' ) );
+	if ( $echo ) echo $url;
+	else return $url;
+}
+
+function tcp_the_my_addresses_url( $echo = true ) {
+	$url = get_permalink( tcp_get_current_id( get_option( 'tcp_addresses_list_page_id' ), 'page' ) );
+	if ( $echo ) echo $url;
+	else return $url;
+}
+
+function tcp_the_my_downloadables_url( $echo = true ) {
+	$url = get_permalink( tcp_get_current_id( get_option( 'tcp_downloadable_list_page_id' ), 'page' ) );
 	if ( $echo ) echo $url;
 	else return $url;
 }
