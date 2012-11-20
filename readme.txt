@@ -3,8 +3,8 @@ Contributors: thecartpress
 Donate link: http://thecartpress.com/collaborate-to-grow-and-support-thecartpress/
 Tags: frontend, CartPress, ecommerce, e-commerce, store, shop, shopping, shopping cart, cart, custom post type, taxonomy, taxonomies, ecomerce, products, TheCartPress, html5, Australia
 Requires at least: 3.1
-Tested up to: 3.4.1
-Stable Tag: 1.0.4
+Tested up to: 3.4.2
+Stable Tag: 1.2
 
 Allows access to customer's account from the front-end of TheCartPress eCommerce sites
 
@@ -39,6 +39,16 @@ This plugin is released under a GPL license.
 == Screenshots ==
 
 == Changelog ==
+= 1.2 =
+* Add a link to the account page in orders emails
+* Deny back-end access to customers
+
+= 1.1 =
+* Deny back-end access to customers
+
+= 1.0.3 =
+* class tcp-store in TheCartPress-FrontEnd pages (My account, my downloads, etc.)
+
 = 1.0.2 =
 * My Orders: login to see your orders
 
