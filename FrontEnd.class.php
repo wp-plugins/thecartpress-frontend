@@ -230,9 +230,9 @@ class TCPFrontEnd {
 		<div class="tcp_login_form">
 		<?php tcp_login_form( array( 'see_register' => false ) ); ?>
 		</div>
-		<a href="<?php tcp_the_my_orders_url(); ?>"><?php _e( 'My Orders', 'tcp-fu' ); ?></a>
+		<a href="<?php tcp_the_my_orders_url(); ?>"><?php _e( 'My Orders', 'tcp-fe' ); ?></a>
 		<br/>
-		<a href="<?php tcp_the_my_addresses_url(); ?>"><?php _e( 'My Addresses', 'tcp-fu' ); ?></a>
+		<a href="<?php tcp_the_my_addresses_url(); ?>"><?php _e( 'My Addresses', 'tcp-fe' ); ?></a>
 		<?php if ( get_option( 'users_can_register' ) ) : ?>
 		<div class="tcp_register_form">
 		<?php tcp_register_form(); ?>
