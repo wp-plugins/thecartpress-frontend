@@ -3,7 +3,7 @@
 Plugin Name: TheCartPress Front End
 Plugin URI: http://wordpress.org/extend/plugins/thecartpress-frontend/
 Description: Allows to set some admin panels in the front end
-Version: 1.2
+Version: 1.3
 Author: TheCartPress team
 Author URI: http://thecartpress.com
 License: GPL
@@ -32,7 +32,7 @@ class TCPFrontEnd {
 	function __construct() {
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_shortcode( 'tcp_my_account', array( $this, 'tcp_my_account' ) );
+		//add_shortcode( 'tcp_my_account', array( $this, 'tcp_my_account' ) );
 		add_shortcode( 'tcp_addresses_list', array( $this, 'tcp_addresses_list' ) );
 		add_shortcode( 'tcp_address_edit', array( $this, 'tcp_address_edit' ) );
 		add_shortcode( 'tcp_downloadable_list', array( $this, 'tcp_downloadable_list' ) );
@@ -59,12 +59,12 @@ class TCPFrontEnd {
 
 	function activate_plugin() {
 		//Page My Account
-		$my_account_page_id = get_option( 'tcp_my_account_page_id' );
+		/*$my_account_page_id = get_option( 'tcp_my_account_page_id' );
 		if ( ! $my_account_page_id || ! get_page( $my_account_page_id ) ) {
 			$my_account_page_id = $this->create_my_account_page();
 		} else {
 			wp_publish_post( $my_account_page_id );
-		}
+		}*/
 		//Page My Addresses
 		$addresses_list_page_id = get_option( 'tcp_addresses_list_page_id' );
 		if ( ! $addresses_list_page_id || ! get_page( $addresses_list_page_id ) ) {
@@ -95,7 +95,7 @@ class TCPFrontEnd {
 		}
 	}
 
-	function create_my_account_page() {
+	/*function create_my_account_page() {
 		$page = array(
 			'comment_status'	=> 'closed',
 			'post_content'		=> 'My Account',
@@ -107,7 +107,7 @@ class TCPFrontEnd {
 		$my_account_page_id = wp_insert_post( $page );
 		update_option( 'tcp_my_account_page_id', $my_account_page_id );
 		return $my_account_page_id;
-	}
+	}*/
 
 	function create_addresses_list_page( $my_account_page_id ) {
 		$page = array(
@@ -189,11 +189,11 @@ class TCPFrontEnd {
 	}
 
 	function tcp_checking_pages( $warnings_msg, $shopping_cart_page_id ) {
-		$my_account_page_id = get_option( 'tcp_my_account_page_id' );
+		/*$my_account_page_id = get_option( 'tcp_my_account_page_id' );
 		if ( ! $my_account_page_id || ! get_page( $my_account_page_id ) ) {
 			$my_account_page_id = $this->create_my_account_page();
 			$warnings_msg[] = __( 'My Account page has been created', 'tcp-fe' );
-		}
+		}*/
 		$page_id = get_option( 'tcp_addresses_list_page_id' );
 		if ( ! $page_id || ! get_page( $page_id ) ) {
 			$addresses_list_page_id = $this->create_addresses_list_page( $my_account_page_id );
@@ -226,18 +226,26 @@ class TCPFrontEnd {
 		return $warnings_msg;
 	}
 
-	function tcp_my_account() { ?>
-		<div class="tcp_login_form">
-		<?php tcp_login_form( array( 'see_register' => false ) ); ?>
-		</div>
-		<a href="<?php tcp_the_my_orders_url(); ?>"><?php _e( 'My Orders', 'tcp-fe' ); ?></a>
-		<br/>
-		<a href="<?php tcp_the_my_addresses_url(); ?>"><?php _e( 'My Addresses', 'tcp-fe' ); ?></a>
-		<?php if ( get_option( 'users_can_register' ) ) : ?>
-		<div class="tcp_register_form">
-		<?php tcp_register_form(); ?>
-		</div>
-		<?php endif;
+	function tcp_my_account() {
+		ob_start();?>
+<div class="tcp_login_form">
+	<?php tcp_login_form( array( 'see_register' => false ) ); ?>
+</div>
+
+<!--<h2><?php //_e( 'My Adresses', 'tcp-fe' ); ?></h2>
+	<?php //_e( 'You have the following dispatch and/or billing addresse(s) at interloom', 'tcp-fe' ); ?>
+	<?php //echo $this->tcp_addresses_list(); ?>
+	<a href="<?php tcp_the_my_addresses_url(); ?>"><?php _e( 'See all addresses', 'tcp-fe' ); ?></a>
+<h2><?php //_e( 'My orders', 'tcp-fe' ); ?></h2>
+	<?php //_e( 'Here is an overview of your current and previous orders', 'tcp_fe' ); ?>
+	<?php //echo $this->tcp_orders_list(); ?>
+	<a href="<?php tcp_the_my_orders_url(); ?>"><?php _e( 'See all orders', 'tcp-fe' ); ?></a>-->
+<?php if ( get_option( 'users_can_register' ) ) : ?>
+	<div class="tcp_register_form">
+	<?php tcp_register_form(); ?>
+	</div>
+<?php endif;
+	return ob_get_clean();
 	}
 
 	function tcp_addresses_list() {
@@ -296,11 +304,11 @@ class TCPFrontEnd {
 
 new TCPFrontEnd();
 
-function tcp_the_my_account_url( $echo = true ) {
+/*function tcp_the_my_account_url( $echo = true ) {
 	$url = get_permalink( tcp_get_current_id( get_option( 'tcp_my_account_page_id' ), 'page' ) );
 	if ( $echo ) echo $url;
 	else return $url;
-}
+}*/
 
 function tcp_the_my_orders_url( $echo = true ) {
 	$url = get_permalink( tcp_get_current_id( get_option( 'tcp_orders_list_page_id' ), 'page' ) );
