@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once( ABSPATH . 'wp-content/plugins/thecartpress/daos/Orders.class.php' );
-require_once( ABSPATH . 'wp-content/plugins/thecartpress/classes/OrderPage.class.php' );
+require_once( WP_PLUGIN_DIR . '/thecartpress/daos/Orders.class.php' );
+require_once( WP_PLUGIN_DIR . '/thecartpress/classes/OrderPage.class.php' );
 
 class TCPOrdersList {
 	function show( $echo = true ) {

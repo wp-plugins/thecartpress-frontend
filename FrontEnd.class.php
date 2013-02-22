@@ -3,7 +3,7 @@
 Plugin Name: TheCartPress Front End
 Plugin URI: http://wordpress.org/extend/plugins/thecartpress-frontend/
 Description: Allows to set some admin panels in the front end
-Version: 1.3
+Version: 1.3.1
 Author: TheCartPress team
 Author URI: http://thecartpress.com
 License: GPL
@@ -30,16 +30,16 @@ Parent: thecartpress
 class TCPFrontEnd {
 
 	function __construct() {
-		add_action( 'init', array( $this, 'init' ) );
-		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		//add_shortcode( 'tcp_my_account', array( $this, 'tcp_my_account' ) );
-		add_shortcode( 'tcp_addresses_list', array( $this, 'tcp_addresses_list' ) );
-		add_shortcode( 'tcp_address_edit', array( $this, 'tcp_address_edit' ) );
-		add_shortcode( 'tcp_downloadable_list', array( $this, 'tcp_downloadable_list' ) );
-		add_shortcode( 'tcp_orders_list', array( $this, 'tcp_orders_list' ) );
+		add_action( 'init', array( &$this, 'init' ) );
+		add_action( 'admin_init', array( &$this, 'admin_init' ) );
+		//add_shortcode( 'tcp_my_account', array( &$this, 'tcp_my_account' ) );
+		add_shortcode( 'tcp_addresses_list', array( &$this, 'tcp_addresses_list' ) );
+		add_shortcode( 'tcp_address_edit', array( &$this, 'tcp_address_edit' ) );
+		add_shortcode( 'tcp_downloadable_list', array( &$this, 'tcp_downloadable_list' ) );
+		add_shortcode( 'tcp_orders_list', array( &$this, 'tcp_orders_list' ) );
 		add_filter( 'body_class', array( &$this, 'body_classes' ) );
 		add_filter( 'tcp_send_order_mail_to_customer_message', array( &$this, 'tcp_send_order_mail_to_customer_message' ), 10, 2 );
-		register_activation_hook( __FILE__, array( $this, 'activate_plugin' ) );
+		register_activation_hook( __FILE__, array( &$this, 'activate_plugin' ) );
 	}
 
 	function init() {
@@ -249,19 +249,19 @@ class TCPFrontEnd {
 	}
 
 	function tcp_addresses_list() {
-		require_once( ABSPATH . 'wp-content/plugins/thecartpress/admin/AddressesList.class.php' );
+		require_once( dirname( __FILE__ ) . '/admin/AddressesList.class.php' );
 		$addresses_list = new TCPAddressesList();
 		return $addresses_list->show( false );
 	}
 
 	function tcp_address_edit() {
-		require_once( ABSPATH . 'wp-content/plugins/thecartpress/admin/AddressEdit.class.php' );
+		require_once( WP_PLUGIN_DIR . '/thecartpress/admin/AddressEdit.class.php' );
 		$address_edit = new TCPAddressEdit();
 		return $address_edit->show( false );
 	}
 
 	function tcp_downloadable_list() {
-		require_once( ABSPATH . 'wp-content/plugins/thecartpress/admin/DownloadableList.class.php' );
+		require_once( WP_PLUGIN_DIR . '/thecartpress/admin/DownloadableList.class.php' );
 		$downloadable_list = new TCPDownloadableList();
 		return $downloadable_list->show( false );
 	}
@@ -273,10 +273,21 @@ class TCPFrontEnd {
 	}
 
 	function body_classes( $classes ) {
-		if ( $this->is_page( get_option( 'tcp_my_account_page_id' ) ) || $this->is_page( get_option( 'tcp_addresses_list_page_id' ) ) ||
-			$this->is_page( get_option( 'tcp_address_edit_page_id' ) ) || $this->is_page( get_option( 'tcp_downloadable_list_page_id' ) ) ||
-			$this->is_page( get_option( 'tcp_orders_list_page_id' ) ) ) {
+		if ( $this->is_page( get_option( 'tcp_my_account_page_id' ) ) ) {
 			$classes[] = 'tcp-store';
+			$classes[] = 'tcp-my-account-page';
+		} elseif ( $this->is_page( get_option( 'tcp_addresses_list_page_id' ) ) ) {
+			$classes[] = 'tcp-store';
+			$classes[] = 'tcp-addresses-list-page';
+		} elseif ( $this->is_page( get_option( 'tcp_address_edit_page_id' ) ) ) {
+			$classes[] = 'tcp-store';
+			$classes[] = 'tcp-address-edit-page';
+		} elseif ( $this->is_page( get_option( 'tcp_downloadable_list_page_id' ) ) ) {
+			$classes[] = 'tcp-store';
+			$classes[] = 'tcp-downloadable-list-page';
+		} elseif ( $this->is_page( get_option( 'tcp_orders_list_page_id' ) ) ) {
+			$classes[] = 'tcp-store';
+			$classes[] = 'tcp-orders-list-page';
 		}
 		return $classes;
 	}
