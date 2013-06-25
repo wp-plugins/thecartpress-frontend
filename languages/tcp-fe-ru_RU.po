@@ -1,0 +1,109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: FrontEnd\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-02 10:02+0100\n"
+"PO-Revision-Date: 2012-11-02 10:05+0100\n"
+"Last-Translator: sensei <sensei@thecartpress.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;__;_e\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Poedit-SearchPath-0: thecartpress-frontend\n"
+
+#: thecartpress-frontend/FrontEnd.class.php:103
+msgid "My Account"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:116
+msgid "My Addresses"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:130
+msgid "Address"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:144
+msgid "My Downloads"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:158
+msgid "My Orders"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:170
+msgid "<strong>My Account page</strong> has been deleted."
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:173
+msgid "<strong>Addresses list page</strong> has been deleted."
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:176
+msgid "<strong>Address Edit page</strong> has been deleted."
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:182
+msgid "<strong>Downloadables list page</strong> has been deleted."
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:186
+msgid "<strong>Orders list page</strong> has been deleted."
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:194
+msgid "My Account page has been created"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:199
+msgid "The Addresses list page has been created"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:206
+msgid "The Address edit page has been created"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:216
+msgid "The Downloadables list page has been created"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:223
+msgid "The orders list page has been created"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:279
+#, php-format
+msgid "To access to your download items, please visit <a href=\"%s\">the download area</a>."
+msgstr ""
+
+#: thecartpress-frontend/admin/OrdersList.class.php:28
+msgid "You need to login to see your orders."
+msgstr ""
+
+#: thecartpress-frontend/admin/OrdersList.class.php:36
+msgid "Return to the list of Orders"
+msgstr ""
+
+#: thecartpress-frontend/admin/OrdersList.class.php:54
+#: thecartpress-frontend/admin/OrdersList.class.php:62
+msgid "ID"
+msgstr ""
+
+#: thecartpress-frontend/admin/OrdersList.class.php:55
+#: thecartpress-frontend/admin/OrdersList.class.php:63
+msgid "Date"
+msgstr ""
+
+#: thecartpress-frontend/admin/OrdersList.class.php:56
+#: thecartpress-frontend/admin/OrdersList.class.php:64
+msgid "status"
+msgstr ""
+
+#: thecartpress-frontend/admin/OrdersList.class.php:57
+#: thecartpress-frontend/admin/OrdersList.class.php:65
+msgid "Total"
+msgstr ""
+

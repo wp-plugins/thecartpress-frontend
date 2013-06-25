@@ -3,7 +3,7 @@
 Plugin Name: TheCartPress Front End
 Plugin URI: http://wordpress.org/extend/plugins/thecartpress-frontend/
 Description: Allows to set some admin panels in the front end
-Version: 1.3.1
+Version: 1.3.2
 Author: TheCartPress team
 Author URI: http://thecartpress.com
 License: GPL
@@ -59,8 +59,8 @@ class TCPFrontEnd {
 
 	function activate_plugin() {
 		//Page My Account
-		/*$my_account_page_id = get_option( 'tcp_my_account_page_id' );
-		if ( ! $my_account_page_id || ! get_page( $my_account_page_id ) ) {
+		$my_account_page_id = get_option( 'tcp_my_account_page_id' );
+		/*if ( ! $my_account_page_id || ! get_page( $my_account_page_id ) ) {
 			$my_account_page_id = $this->create_my_account_page();
 		} else {
 			wp_publish_post( $my_account_page_id );
@@ -189,8 +189,8 @@ class TCPFrontEnd {
 	}
 
 	function tcp_checking_pages( $warnings_msg, $shopping_cart_page_id ) {
-		/*$my_account_page_id = get_option( 'tcp_my_account_page_id' );
-		if ( ! $my_account_page_id || ! get_page( $my_account_page_id ) ) {
+		$my_account_page_id = get_option( 'tcp_my_account_page_id' );
+		/*if ( ! $my_account_page_id || ! get_page( $my_account_page_id ) ) {
 			$my_account_page_id = $this->create_my_account_page();
 			$warnings_msg[] = __( 'My Account page has been created', 'tcp-fe' );
 		}*/

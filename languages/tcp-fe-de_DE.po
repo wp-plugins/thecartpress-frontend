@@ -1,0 +1,183 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: FrontEnd\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-14 19:28+0100\n"
+"PO-Revision-Date: 2013-04-14 19:28+0100\n"
+"Last-Translator: sensei <sensei@thecartpress.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;__;_e\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Poedit-SearchPath-0: thecartpress-frontend\n"
+
+#: thecartpress-frontend/FrontEnd.class.php:117
+msgid "My Addresses"
+msgstr "Meine Adressen"
+
+#: thecartpress-frontend/FrontEnd.class.php:131
+#: thecartpress-frontend/admin/AddressesList.class.php:58
+#: thecartpress-frontend/admin/AddressesList.class.php:68
+msgid "Address"
+msgstr "Adresse"
+
+#: thecartpress-frontend/FrontEnd.class.php:145
+msgid "My Downloads"
+msgstr "Meine Downloads"
+
+#: thecartpress-frontend/FrontEnd.class.php:159
+msgid "My Orders"
+msgstr "Meine Bestellungen"
+
+#: thecartpress-frontend/FrontEnd.class.php:171
+msgid "<strong>My Account page</strong> has been deleted."
+msgstr "<strong>Mein Konto - Seite</strong> wurde gelöscht."
+
+#: thecartpress-frontend/FrontEnd.class.php:174
+msgid "<strong>Addresses list page</strong> has been deleted."
+msgstr "<strong>Meine Adressen - Seite</strong> wurde gelöscht."
+
+#: thecartpress-frontend/FrontEnd.class.php:177
+msgid "<strong>Address Edit page</strong> has been deleted."
+msgstr "<strong>Adressen-Änderungs-Seite</strong> wurde gelöscht."
+
+#: thecartpress-frontend/FrontEnd.class.php:183
+msgid "<strong>Downloadables list page</strong> has been deleted."
+msgstr "<strong>Downloads - Seite</strong> wurde gelöscht."
+
+#: thecartpress-frontend/FrontEnd.class.php:187
+msgid "<strong>Orders list page</strong> has been deleted."
+msgstr "<strong>Bestellungsübersicht - Seite</strong> wurde gelöscht."
+
+#: thecartpress-frontend/FrontEnd.class.php:200
+msgid "The Addresses list page has been created"
+msgstr "Meine Adressen - Seite wurde erstellt"
+
+#: thecartpress-frontend/FrontEnd.class.php:207
+msgid "The Address edit page has been created"
+msgstr "Adressen-Änderungs-Seite wurde erstellt"
+
+#: thecartpress-frontend/FrontEnd.class.php:217
+msgid "The Downloadables list page has been created"
+msgstr "Downloads - Seite wurde erstellt"
+
+#: thecartpress-frontend/FrontEnd.class.php:224
+msgid "The orders list page has been created"
+msgstr "Bestellungs - Seite wurde erstellt"
+
+#: thecartpress-frontend/FrontEnd.class.php:238
+#, fuzzy
+msgid "See all addresses"
+msgstr "Meine Adressen"
+
+#: thecartpress-frontend/FrontEnd.class.php:242
+msgid "See all orders"
+msgstr ""
+
+#: thecartpress-frontend/FrontEnd.class.php:301
+#, php-format
+msgid "To access to your download items, please visit <a href=\"%s\">the download area</a>."
+msgstr "Ihre Downloads erreichen Sie im <a href=\"%s\">Download-Bereich</a>."
+
+#: thecartpress-frontend/admin/AddressesList.class.php:27
+#, fuzzy
+msgid "You need to login to see your address."
+msgstr "Sie müssen eingeloggt sein, um Ihre Bestellungen zu sehen."
+
+#: thecartpress-frontend/admin/AddressesList.class.php:38
+#, fuzzy
+msgid "Address deleted"
+msgstr "Adresse"
+
+#: thecartpress-frontend/admin/AddressesList.class.php:47
+#, fuzzy
+msgid "List of addresses"
+msgstr "Meine Adressen"
+
+#: thecartpress-frontend/admin/AddressesList.class.php:50
+msgid "Create new address"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:59
+#: thecartpress-frontend/admin/AddressesList.class.php:69
+msgid "Name"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:60
+#: thecartpress-frontend/admin/AddressesList.class.php:70
+msgid "Street"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:61
+#: thecartpress-frontend/admin/AddressesList.class.php:71
+msgid "Default"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:78
+msgid "The list of addresses is empty"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:85
+msgid "Shipping"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:87
+msgid "Billing"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:90
+msgid "edit"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:90
+msgid "delete"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:95
+msgid "Do you really want to delete this address?"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:96
+msgid "Yes"
+msgstr ""
+
+#: thecartpress-frontend/admin/AddressesList.class.php:97
+msgid "No, I don't"
+msgstr ""
+
+#: thecartpress-frontend/admin/OrdersList.class.php:28
+msgid "You need to login to see your orders."
+msgstr "Sie müssen eingeloggt sein, um Ihre Bestellungen zu sehen."
+
+#: thecartpress-frontend/admin/OrdersList.class.php:36
+msgid "Return to the list of Orders"
+msgstr "Zurück zur Liste der Bestellungen"
+
+#: thecartpress-frontend/admin/OrdersList.class.php:54
+#: thecartpress-frontend/admin/OrdersList.class.php:62
+msgid "ID"
+msgstr "ID"
+
+#: thecartpress-frontend/admin/OrdersList.class.php:55
+#: thecartpress-frontend/admin/OrdersList.class.php:63
+msgid "Date"
+msgstr "Datum"
+
+#: thecartpress-frontend/admin/OrdersList.class.php:56
+#: thecartpress-frontend/admin/OrdersList.class.php:64
+msgid "status"
+msgstr "Status"
+
+#: thecartpress-frontend/admin/OrdersList.class.php:57
+#: thecartpress-frontend/admin/OrdersList.class.php:65
+msgid "Total"
+msgstr "Total"
+
+#~ msgid "My Account"
+#~ msgstr "Mein Konto"
+
+#~ msgid "My Account page has been created"
+#~ msgstr "Mein Konto - Seite wurde erstellt"
