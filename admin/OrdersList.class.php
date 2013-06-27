@@ -79,7 +79,7 @@ class TCPOrdersList {
 		<tr class="<?php echo $tcp_first_line; $tcp_first_line = ''; ?>">
 			<td class="tcp_order_id"><a href="<?php echo $url; ?>"><?php echo $order->order_id; ?></a></td>
 			<td class="tcp_created_at"><?php echo $order->created_at; ?></td>
-			<td class="tcp_status_<?php echo strtolower( $order->status ); ?>"><?php echo $order->status; ?></td>
+			<td class="tcp_status_<?php echo strtolower( $order->status ); ?>"><?php echo tcp_get_status_label( $order->status ); ?></td>
 			<td><?php $total = - $order->discount_amount;
 				$total = OrdersCosts::getTotalCost( $order->order_id, $total );
 				echo tcp_format_the_price( OrdersDetails::getTotal( $order->order_id, $total ) ); ?>
