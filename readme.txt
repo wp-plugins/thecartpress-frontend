@@ -3,8 +3,8 @@ Contributors: thecartpress
 Donate link: http://thecartpress.com/collaborate-to-grow-and-support-thecartpress/
 Tags: frontend, CartPress, ecommerce, e-commerce, store, shop, shopping, shopping cart, cart, custom post type, taxonomy, taxonomies, ecomerce, products, TheCartPress, html5, Australia
 Requires at least: 3.1
-Tested up to: 3.5.2
-Stable Tag: 1.3.2
+Tested up to: 3.8
+Stable Tag: 1.4
 
 Allows access to customer's account from the front-end of TheCartPress eCommerce sites
 
@@ -39,8 +39,14 @@ This plugin is released under a GPL license.
 == Screenshots ==
 
 == Changelog ==
-= 1.3.2 =
+= 1.3.3 =
+* Support for TheCartPress 1.3+
+
+= 1.3.3 =
 * Adding hooks
+* Supports for copying orders to Shopping cart
+
+= 1.3.2 =
 * Minor bugs
 
 = 1.3.1 =

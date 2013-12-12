@@ -57,41 +57,42 @@ class TCPOrdersList {
 		);
 		$cols = apply_filters( 'tcp_front_end_orders_columns', $cols );
 		ob_start(); ?>
-		<table class="tcp_orders_front_end" cellspacing="0">
-		<thead>
-			<tr>
-			<?php foreach( $cols as $col ) { ?>
-				<th scope="col"><?php echo $col; ?></th>
-			<?php } ?>
-			</tr>
-		</thead>
-		<tfoot>
-			<tr>
-			<?php foreach( $cols as $col ) { ?>
-				<th scope="col"><?php echo $col; ?></th>
-			<?php } ?>
-			</tr>
-		</tfoot>
-		<tbody>
-		<?php foreach( $orders as $order ) :
-			$url = add_query_arg( 'order_id', $order->order_id, get_permalink() );
-			$tcp_first_line = 'tcp_first_line'; ?>
-		<tr class="<?php echo $tcp_first_line; $tcp_first_line = ''; ?>">
-			<td class="tcp_order_id"><a href="<?php echo $url; ?>"><?php echo $order->order_id; ?></a></td>
-			<td class="tcp_created_at"><?php echo $order->created_at; ?></td>
-			<td class="tcp_status_<?php echo strtolower( $order->status ); ?>"><?php echo $order->status; ?></td>
-			<td><?php $total = - $order->discount_amount;
-				$total = OrdersCosts::getTotalCost( $order->order_id, $total );
-				echo tcp_format_the_price( OrdersDetails::getTotal( $order->order_id, $total ) ); ?>
-			</td>
-			<?php do_action( 'tcp_front_end_orders_cells', $order->order_id ); ?>
-		</tr>
-		<?php endforeach; ?>
-		</tbody>
-		</table>
+<div class="tcpf">
+<table class="tcp_orders_front_end table table-striped table-hover">
+<thead>
+	<tr>
+	<?php foreach( $cols as $col ) { ?>
+		<th scope="col"><?php echo $col; ?></th>
+	<?php } ?>
+	</tr>
+</thead>
+<tfoot>
+	<tr>
+	<?php foreach( $cols as $col ) { ?>
+		<th scope="col"><?php echo $col; ?></th>
+	<?php } ?>
+	</tr>
+</tfoot>
+<tbody>
+<?php foreach( $orders as $order ) :
+	$url = add_query_arg( 'order_id', $order->order_id, get_permalink() );
+	$tcp_first_line = 'tcp_first_line'; ?>
+<tr class="<?php echo $tcp_first_line; $tcp_first_line = ''; ?>">
+	<td class="tcp_order_id"><a href="<?php echo $url; ?>"><?php echo $order->order_id; ?></a></td>
+	<td class="tcp_created_at"><?php echo $order->created_at; ?></td>
+	<td class="tcp_status_<?php echo strtolower( $order->status ); ?>"><?php echo tcp_get_status_label( $order->status ); ?></td>
+	<td><?php $total = - $order->discount_amount;
+		$total = OrdersCosts::getTotalCost( $order->order_id, $total );
+		echo tcp_format_the_price( OrdersDetails::getTotal( $order->order_id, $total ) ); ?>
+	</td>
+	<?php do_action( 'tcp_front_end_orders_cells', $order->order_id ); ?>
+</tr>
+<?php endforeach; ?>
+</tbody>
+</table>
+</div><!-- .tcpf -->
 		<?php $out = ob_get_clean();
 		if ( $echo ) echo $out;
 		else return $out;
 	}
 }
-?>
