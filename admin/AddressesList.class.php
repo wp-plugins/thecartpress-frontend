@@ -34,25 +34,21 @@ class TCPAddressesList {
 			$address_id = isset( $_REQUEST['address_id'] ) ? $_REQUEST['address_id'] : 0;
 			if ( $address_id > 0 &&	Addresses::isOwner( $address_id, $current_user->ID ) ) {
 				Addresses::delete( $address_id ); ?>
-			<div id="message" class="updated"><p>
-				<?php _e( 'Address deleted', 'tcp' ); ?>
-			</p></div><?php
+<div class="alert alert-success">
+	<?php _e( 'Address deleted', 'tcp' ); ?>
+</div><?php
 			}
 		}
 		$addresses = Addresses::getCustomerAddresses( $current_user->ID );
 		ob_start(); ?>
 
-<div class="wrap">
+<div class="tcpf">
 
 <?php if ( is_admin() ) : ?><h2><?php _e( 'List of addresses', 'tcp' ); ?></h2><?php endif; ?>
 
-<ul class="subsubsub">
-	<li><a href="<?php echo $admin_path; ?>"><?php _e( 'Create new address', 'tcp' ); ?></a></li>
-</ul>
+<button type="button" onclick="window.location='<?php echo $admin_path; ?>';" class="btn btn-primary"><?php _e( 'Create new address', 'tcp' ); ?></button>
 
-<div class="clear"></div>
-
-<table class="widefat fixed">
+<table class="table table-striped table-hover">
 <thead>
 <tr>
 	<th scope="col" class="manage-column"><?php _e( 'Address', 'tcp' ); ?></th>
@@ -79,24 +75,34 @@ class TCPAddressesList {
 <?php else :
 	foreach( $addresses as $address ) : ?>
 	<tr>
-		<td><?php echo $address->address_id, stripslashes( $address->name ); ?></td>
+		<td><?php echo $address->address_id; if ( !empty( $address->name ) ) echo stripslashes( $address->name ); ?></td>
 		<td><?php echo stripslashes( $address->firstname ), ' ', stripslashes( $address->lastname ); ?></td>
 		<td><?php echo stripslashes( $address->street ), ' ', stripslashes( $address->city ), ' (', stripslashes( $address->region ), ')'; ?></td>
-		<?php if ( $address->default_shipping == 'Y' ) $default = __( 'Shipping', 'tcp' );
-		else $default = '';
-		if ( $address->default_billing == 'Y' ) $default .= ' ' . __( 'Billing', 'tcp' ); ?>
+		<?php if ( $address->default_shipping == 'Y' ) {
+			$default = __( 'Shipping', 'tcp' );
+		} else {
+			$default = '';
+		}
+		if ( $address->default_billing == 'Y' ) {
+			$default .= ' ' . __( 'Billing', 'tcp' );
+		} ?>
 		<td><?php echo $default; ?></td>
 		<td style="width: 20%;">
-		<div><a href="<?php echo add_query_arg( 'address_id', $address->address_id, $admin_path ); ?>"><?php _e( 'edit', 'tcp' ); ?></a> | <a href="#" onclick="jQuery('.delete_address').hide();jQuery('#delete_<?php echo $address->address_id; ?>').show();return false;" class="delete"><?php _e( 'delete', 'tcp' ); ?></a></div>
-		<div id="delete_<?php echo $address->address_id; ?>" class="delete_address" style="display:none; border: 1px dotted orange; padding: 2px">
-			<form method="post" name="frm_delete_<?php echo $address->address_id; ?>">
-			<input type="hidden" name="address_id" value="<?php echo $address->address_id; ?>" />
-			<input type="hidden" name="tcp_delete_address" value="y" />
-			<p><?php _e( 'Do you really want to delete this address?', 'tcp' ); ?></p>
-			<a href="javascript:document.frm_delete_<?php echo $address->address_id; ?>.submit();" class="delete"><?php _e( 'Yes' , 'tcp' ); ?></a> |
-			<a href="#" onclick="jQuery('#delete_<?php echo $address->address_id; ?>').hide();return false;"><?php _e( 'No, I don\'t' , 'tcp' ); ?></a>
-			</form>
-		</div>
+			<div class="btn-group btn-group-xs">
+				<button type="button" onclick="window.location='<?php echo add_query_arg( 'address_id', $address->address_id, $admin_path ); ?>'" class="btn btn-success" title="<?php _e( 'edit', 'tcp' ); ?>"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only"><?php _e( 'edit', 'tcp' ); ?></span></button>
+				<button type="button" onclick="jQuery('.delete_address').hide();jQuery('#delete_<?php echo $address->address_id; ?>').show();return false;" class="btn btn-danger" title="<?php _e( 'delete', 'tcp' ); ?>"><span class="glyphicon glyphicon-trash"></span> <span class="sr-only"><?php _e( 'delete', 'tcp' ); ?></span></button>
+			</div>
+			<div id="delete_<?php echo $address->address_id; ?>" class="delete_address" style="display:none; border: 1px dotted orange; padding: 2px">
+				<form method="post" name="frm_delete_<?php echo $address->address_id; ?>">
+					<input type="hidden" name="address_id" value="<?php echo $address->address_id; ?>" />
+					<input type="hidden" name="tcp_delete_address" value="y" />
+					<p><?php _e( 'Do you really want to delete this address?', 'tcp' ); ?></p>
+					<div class="btn-group btn-group-xs">
+						<button type="button" onclick="document.frm_delete_<?php echo $address->address_id; ?>.submit();" class="btn btn-danger" title="<?php _e( 'Yes' , 'tcp' ); ?>"><span class="glyphicon glyphicon-ok"></span></button>
+						<button type="button" onclick="jQuery('#delete_<?php echo $address->address_id; ?>').hide();return false;" class="btn btn-success" title="<?php _e( 'No, I don\'t' , 'tcp' ); ?>"><span class="glyphicon glyphicon-remove"></span></button>
+					</div>
+				</form>
+			</div>
 		</td>
 	</tr>
 	<?php endforeach;
@@ -109,4 +115,3 @@ endif; ?>
 		return $out;
 	}
 }
-?>

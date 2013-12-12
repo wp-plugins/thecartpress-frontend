@@ -3,7 +3,7 @@
 Plugin Name: TheCartPress Front End
 Plugin URI: http://wordpress.org/extend/plugins/thecartpress-frontend/
 Description: Allows to set some admin panels in the front end
-Version: 1.3.3
+Version: 1.4
 Author: TheCartPress team
 Author URI: http://thecartpress.com
 License: GPL
@@ -30,22 +30,30 @@ Parent: thecartpress
 class TCPFrontEnd {
 
 	function __construct() {
-		add_action( 'init', array( &$this, 'init' ) );
-		add_action( 'admin_init', array( &$this, 'admin_init' ) );
+		add_action( 'tcp_init'									, array( $this, 'init' ) );
+		add_action( 'tcp_admin_init'							, array( $this, 'admin_init' ) );
+		add_action( 'tcp_author_profile_bottom'					, array( $this, 'tcp_author_profile_bottom' ) );
+
+		add_filter( 'body_class'								, array( $this, 'body_classes' ) );
+		add_filter( 'tcp_send_order_mail_to_customer_message'	, array( $this, 'tcp_send_order_mail_to_customer_message' ), 10, 2 );
+
 		//add_shortcode( 'tcp_my_account', array( &$this, 'tcp_my_account' ) );
-		add_shortcode( 'tcp_addresses_list', array( &$this, 'tcp_addresses_list' ) );
-		add_shortcode( 'tcp_address_edit', array( &$this, 'tcp_address_edit' ) );
-		add_shortcode( 'tcp_downloadable_list', array( &$this, 'tcp_downloadable_list' ) );
-		add_shortcode( 'tcp_orders_list', array( &$this, 'tcp_orders_list' ) );
-		add_filter( 'body_class', array( &$this, 'body_classes' ) );
-		add_filter( 'tcp_send_order_mail_to_customer_message', array( &$this, 'tcp_send_order_mail_to_customer_message' ), 10, 2 );
-		register_activation_hook( __FILE__, array( &$this, 'activate_plugin' ) );
+		add_shortcode( 'tcp_addresses_list'		, array( $this, 'tcp_addresses_list' ) );
+		add_shortcode( 'tcp_address_edit'		, array( $this, 'tcp_address_edit' ) );
+		add_shortcode( 'tcp_downloadable_list'	, array( $this, 'tcp_downloadable_list' ) );
+		add_shortcode( 'tcp_orders_list'		, array( $this, 'tcp_orders_list' ) );
+		
+		register_activation_hook( __FILE__		, array( $this, 'activate_plugin' ) );
 	}
 
 	function init() {
-		if ( function_exists( 'load_plugin_textdomain' ) ) load_plugin_textdomain( 'tcp-fe', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-		if ( ! is_admin() ) wp_enqueue_style( 'tcp_frontend_style', plugins_url( 'thecartpress-frontend/css/frontend.css' ) );
-		add_filter( 'tcp_get_download_area_url', array( &$this, 'tcp_get_download_area_url' ) );
+		if ( function_exists( 'load_plugin_textdomain' ) ) {
+			load_plugin_textdomain( 'tcp-fe', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		}
+		if ( ! is_admin() ) {
+			wp_enqueue_style( 'tcp_frontend_style', plugins_url( 'thecartpress-frontend/css/tcp_frontend.css' ) );
+		}
+		add_filter( 'tcp_get_download_area_url', array( $this, 'tcp_get_download_area_url' ) );
 	}
 
 	function admin_init() {
@@ -53,8 +61,19 @@ class TCPFrontEnd {
 			wp_redirect( site_url() );
 			exit;
 		}
-		add_filter( 'tcp_check_the_plugin', array( $this, 'tcp_check_the_plugin' ) );
-		add_filter( 'tcp_checking_pages', array( $this, 'tcp_checking_pages' ), 10, 2 );
+		add_filter( 'tcp_check_the_plugin'	, array( $this, 'tcp_check_the_plugin' ) );
+		add_filter( 'tcp_checking_pages'	, array( $this, 'tcp_checking_pages' ), 10, 2 );
+	}
+
+	function tcp_author_profile_bottom( $current_user ) {
+		?>
+		<li class="tcp-profile-my-orders">
+			<a href="<?php tcp_the_my_orders_url(); ?>"><span class="glyphicon glyphicon-shopping-cart"></span> <?php _e( 'My Orders', 'tcp-fe' ); ?></a>
+		</li>
+		<li class="tcp-profile-my-addresses">
+			<a href="<?php tcp_the_my_addresses_url(); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php _e( 'My Addresses', 'tcp-fe' ); ?></a>
+		</li>
+		<?php 
 	}
 
 	function activate_plugin() {
@@ -338,4 +357,3 @@ function tcp_the_my_downloadables_url( $echo = true ) {
 	if ( $echo ) echo $url;
 	else return $url;
 }
-?>
